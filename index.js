@@ -1,13 +1,20 @@
 const express=require("express")
 const dotenv = require("dotenv");
 const mongoose = require('mongoose');
+const cors=require("cors")
+const router=require("./routes/index")
 dotenv.config();
 const app=express();
+app.use(cors());
+app.use(express.json());
+
 
 
 
 const PORT=process.env.PORT;
 const MONGO_URL=process.env.MONGO_URL
+
+app.use('/api/v1',router)
 app.get('/',async(req,res)=>{
     return res.status(200).send({message:"ohk"})
 })
